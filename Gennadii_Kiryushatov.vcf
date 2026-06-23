@@ -3,8 +3,7 @@ VERSION:3.0
 N:Kiryushatov;Gennadii;;;
 FN:Gennadii Kiryushatov
 TITLE:Senior iOS SDET
-EMAIL;TYPE=INTERNET,WORK:genakir@icloud.com
-TEL;TYPE=CELL:+14692304471
-ADR;TYPE=WORK:;;Austin;TX;;;USA
-NOTE:Senior iOS SDET specializing in XCUITest, Swift, CI/CD, iOS, iPadOS, and tvOS automation.
+EMAIL;TYPE=INTERNET:genakir@icloud.com
+URL:https://linkedin.com/in/genakir
+ADR;TYPE=WORK:;;Columbia, MD;;;;USA
 END:VCARD

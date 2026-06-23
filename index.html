@@ -1,668 +1,452 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<title>Gennadii Kiryushatov | Senior iOS SDET</title>
-<meta content="Senior iOS SDET specializing in XCUITest, Swift, CI/CD, analytics validation, and performance testing for iOS, iPadOS, and tvOS apps" name="description"/>
-<meta content="#f5f5f7" name="theme-color"/>
-<meta content="Gennadii Kiryushatov | Senior iOS SDET" property="og:title"/>
-<meta content="XCUITest, Swift, CI/CD, analytics validation, performance testing, and Apple-platform automation" property="og:description"/>
-<meta content="website" property="og:type"/>
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gennadii Kiryushatov | Senior iOS SDET</title>
+  <meta name="description" content="Senior iOS SDET focused on XCUITest, Swift, CI/CD, analytics validation, and mobile quality for iOS, iPadOS, and tvOS">
+  <meta name="theme-color" content="#ffffff">
+  <style>
     :root {
-      --page: #f5f5f7;
-      --surface: #ffffff;
-      --ink: #1d1d1f;
-      --muted: #6e6e73;
-      --link: #0066cc;
-      --line: rgba(0, 0, 0, 0.10);
-      --soft: rgba(0, 0, 0, 0.035);
-      --glass: rgba(245, 245, 247, 0.72);
-      --shadow: 0 18px 54px rgba(0, 0, 0, 0.08);
-      --radius-lg: 34px;
-      --radius-md: 24px;
-      --max: 1180px;
+      --bg: #ffffff;
+      --surface: #fafafa;
+      --text: #111111;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --link: #0a66c2;
+      --max: 1280px;
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      color: var(--ink);
-      background: var(--page);
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.45;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
 
     a { color: inherit; text-decoration: none; }
     a:hover { color: var(--link); }
-    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
-    .skip-link {
-      position: absolute;
-      left: 16px;
-      top: -60px;
-      z-index: 99;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: var(--ink);
-      color: #fff;
-    }
-    .skip-link:focus { top: 16px; }
+    .container { width: min(var(--max), calc(100% - 56px)); margin: 0 auto; }
 
-    .site-header {
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: var(--glass);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      backdrop-filter: blur(10px);
+      z-index: 10;
     }
+
     .nav {
-      height: 48px;
+      min-height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
-      font-size: 13px;
-      color: rgba(29, 29, 31, 0.78);
+      gap: 20px;
     }
+
     .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
       font-weight: 600;
-      color: var(--ink);
-      white-space: nowrap;
+      font-size: 15px;
+      letter-spacing: -0.02em;
     }
-    .glyph {
-      width: 22px;
-      height: 22px;
-      display: inline-grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--ink);
-      color: #fff;
-      font-size: 10px;
-      letter-spacing: -0.06em;
-    }
+
     .nav-links {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 28px;
-      white-space: nowrap;
+      gap: 20px;
+      color: var(--muted);
+      font-size: 14px;
     }
-    .nav-actions { display: flex; align-items: center; gap: 16px; white-space: nowrap; }
 
     .hero {
-      min-height: calc(100svh - 48px);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 72px 0 52px;
-      overflow: hidden;
-      position: relative;
+      padding: 88px 0 56px;
     }
-    .hero::before,
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      border-radius: 999px;
-      filter: blur(12px);
-      opacity: 0.8;
-      pointer-events: none;
-    }
-    .hero::before {
-      top: 5%;
-      left: 50%;
-      transform: translateX(-86%);
-      background: radial-gradient(circle, rgba(0, 102, 204, 0.14), rgba(0, 102, 204, 0) 67%);
-    }
-    .hero::after {
-      bottom: 2%;
-      right: 50%;
-      transform: translateX(84%);
-      background: radial-gradient(circle, rgba(130, 130, 140, 0.18), rgba(130, 130, 140, 0) 68%);
-    }
-    .hero-inner { position: relative; z-index: 1; }
+
     .eyebrow {
       margin: 0 0 14px;
       color: var(--muted);
-      font-size: clamp(17px, 1.7vw, 21px);
+      font-size: 16px;
       font-weight: 600;
-      letter-spacing: -0.02em;
     }
+
     h1 {
-      margin: 0 auto;
-      max-width: 1000px;
-      font-size: clamp(54px, 10.4vw, 118px);
-      line-height: 0.9;
-      letter-spacing: -0.075em;
-      font-weight: 700;
+      margin: 0;
+      font-size: clamp(40px, 8vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      max-width: 980px;
     }
-    .hero-copy {
-      max-width: 760px;
-      margin: 26px auto 0;
-      font-size: clamp(21px, 2.8vw, 32px);
-      line-height: 1.15;
-      letter-spacing: -0.045em;
-      font-weight: 600;
-      color: #333336;
+
+    .lead {
+      max-width: 900px;
+      margin: 20px 0 0;
+      font-size: clamp(18px, 2.4vw, 22px);
+      color: #2f2f2f;
     }
-    .hero-copy span { color: var(--muted); }
-    .cta-row {
+
+    .actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 34px;
+      gap: 12px;
+      margin-top: 28px;
     }
-    .pill {
+
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-height: 44px;
-      padding: 0 21px;
+      padding: 0 18px;
       border-radius: 999px;
-      font-size: 17px;
+      border: 1px solid var(--line);
+      font-size: 15px;
       font-weight: 500;
-      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      background: #fff;
     }
-    .pill:hover { transform: translateY(-1px); }
-    .pill.primary { background: var(--link); color: #fff; box-shadow: 0 14px 36px rgba(0, 102, 204, 0.22); }
-    .pill.primary:hover { color: #fff; background: #0071e3; }
-    .pill.secondary { color: var(--link); border: 1px solid rgba(0, 102, 204, 0.35); background: rgba(255,255,255,0.62); }
 
-    .intro-strip {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-bottom: 12px;
+    .button.primary {
+      background: var(--text);
+      color: #fff;
+      border-color: var(--text);
     }
-    .mini-card {
-      min-height: 132px;
-      padding: 24px;
-      border-radius: var(--radius-md);
-      background: var(--surface);
-      border: 1px solid rgba(255,255,255,0.75);
-    }
-    .mini-card strong {
-      display: block;
-      font-size: 34px;
-      line-height: 1;
-      letter-spacing: -0.055em;
-    }
-    .mini-card span {
-      display: block;
-      margin-top: 10px;
+
+    .meta {
+      margin-top: 18px;
       color: var(--muted);
       font-size: 15px;
     }
 
-    section { padding: 76px 0; }
-    .section-head { text-align: center; margin: 0 auto 30px; max-width: 850px; }
-    .kicker {
-      margin: 0 0 8px;
-      color: var(--muted);
-      font-size: 19px;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-    h2 {
-      margin: 0;
-      font-size: clamp(38px, 6.4vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -0.067em;
-      font-weight: 700;
-    }
-    .section-head p:last-child {
-      max-width: 690px;
-      margin: 18px auto 0;
-      color: var(--muted);
-      font-size: 20px;
-      letter-spacing: -0.025em;
+    section {
+      padding: 26px 0 10px;
     }
 
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .feature-card {
-      position: relative;
-      min-height: 470px;
-      padding: clamp(28px, 4.5vw, 48px);
-      border-radius: var(--radius-lg);
-      background: var(--surface);
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.75);
-      box-shadow: 0 1px 0 rgba(0,0,0,0.03);
-    }
-    .feature-card.dark {
-      background: #000;
-      color: #f5f5f7;
-    }
-    .feature-card.tall { min-height: 560px; }
-    .feature-card h3 {
-      margin: 0;
-      font-size: clamp(32px, 4.8vw, 56px);
-      line-height: 1;
-      letter-spacing: -0.06em;
-    }
-    .feature-card p {
-      max-width: 560px;
-      margin: 13px 0 0;
-      font-size: 21px;
-      line-height: 1.2;
-      letter-spacing: -0.035em;
-      color: var(--muted);
-      font-weight: 500;
-    }
-    .feature-card.dark p { color: rgba(245,245,247,0.74); }
-    .feature-card .linkline {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 22px;
-      color: var(--link);
-      font-size: 17px;
-    }
-    .orb {
-      position: absolute;
-      right: -160px;
-      bottom: -180px;
-      width: 440px;
-      height: 440px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 35% 32%, rgba(0,113,227,0.40), rgba(0,113,227,0.16) 34%, rgba(0,0,0,0) 66%);
-    }
-    .orb.silver {
-      background: radial-gradient(circle at 35% 32%, rgba(210,214,221,0.82), rgba(186,190,196,0.32) 38%, rgba(0,0,0,0) 68%);
-    }
-    .orb.dark-orb {
-      background: radial-gradient(circle at 35% 32%, rgba(255,255,255,0.34), rgba(0,102,204,0.22) 32%, rgba(0,0,0,0) 68%);
-    }
-
-    .skills {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .skill {
-      padding: 28px;
-      border-radius: var(--radius-md);
-      background: var(--surface);
-      min-height: 214px;
-    }
-    .skill h3 {
+    .section-title {
       margin: 0 0 16px;
-      font-size: 24px;
+      font-size: 28px;
+      line-height: 1.1;
       letter-spacing: -0.04em;
     }
-    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+    }
+
+    .summary-grid,
+    .skills-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .summary-item strong {
+      display: block;
+      font-size: 24px;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .summary-item span,
+    .muted {
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
     .tag {
       display: inline-flex;
       align-items: center;
       min-height: 32px;
       padding: 0 12px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: var(--soft);
-      color: #3b3b3d;
+      background: #fff;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .experience-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .job {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .job h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .company {
+      font-weight: 600;
+    }
+
+    .period,
+    .location {
+      color: var(--muted);
       font-size: 14px;
     }
 
-    .timeline {
-      display: grid;
-      gap: 12px;
-    }
-    .role {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 36px;
-      padding: clamp(26px, 4vw, 42px);
-      background: var(--surface);
-      border-radius: var(--radius-lg);
-    }
-    .role h3 {
-      margin: 0 0 8px;
-      font-size: 30px;
-      line-height: 1;
-      letter-spacing: -0.05em;
-    }
-    .company { color: var(--link); font-weight: 600; }
-    .period { color: var(--muted); margin-top: 4px; }
-    .role p { margin: 0 0 16px; color: #3b3b3d; font-size: 19px; font-weight: 500; letter-spacing: -0.02em; }
-    .role ul { margin: 0; padding-left: 20px; color: var(--muted); font-size: 16px; }
-    .role li + li { margin-top: 8px; }
-
-    .contact-panel {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 12px;
-      align-items: stretch;
-    }
-    .contact-hero,
-    .contact-card {
-      padding: clamp(30px, 5vw, 56px);
-      border-radius: var(--radius-lg);
-      background: var(--surface);
-    }
-    .contact-hero h2 { max-width: 800px; }
-    .contact-hero p {
-      margin: 18px 0 0;
-      color: var(--muted);
-      font-size: 22px;
-      line-height: 1.2;
-      letter-spacing: -0.035em;
-      font-weight: 500;
-    }
-    .contact-list {
-      list-style: none;
-      padding: 0;
+    .job p {
       margin: 0;
+      color: #2d2d2d;
+    }
+
+    .contact-grid {
       display: grid;
-      gap: 22px;
+      gap: 12px;
+      grid-template-columns: 1.5fr 0.9fr;
     }
-    .contact-list b {
+
+    .contact-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .contact-row b {
       display: block;
-      margin-bottom: 3px;
       font-size: 13px;
-      letter-spacing: 0.02em;
       color: var(--muted);
-      font-weight: 600;
+      margin-bottom: 2px;
     }
-    .contact-list span,
-    .contact-list a { font-size: 20px; letter-spacing: -0.025em; font-weight: 600; }
 
-    .footer {
-      padding: 28px 0 54px;
+    footer {
+      padding: 40px 0 60px;
       color: var(--muted);
-      font-size: 13px;
-    }
-    .footer-inner {
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
-
-    @media (max-width: 960px) {
-      .nav-links { display: none; }
-      .intro-strip { grid-template-columns: repeat(2, 1fr); }
-      .feature-grid, .contact-panel { grid-template-columns: 1fr; }
-      .feature-card, .feature-card.tall { min-height: 420px; }
-      .skills { grid-template-columns: repeat(2, 1fr); }
-      .role { grid-template-columns: 1fr; gap: 18px; }
-    }
-    @media (max-width: 620px) {
-      .wrap { width: min(100% - 28px, var(--max)); }
-      .nav-actions a:first-child { display: none; }
-      .hero { min-height: auto; padding: 58px 0 36px; }
-      h1 { font-size: clamp(48px, 17vw, 76px); }
-      .hero-copy { font-size: 22px; }
-      .intro-strip, .skills { grid-template-columns: 1fr; }
-      section { padding: 54px 0; }
-      .feature-card, .feature-card.tall { min-height: 370px; }
-      .role h3 { font-size: 27px; }
+      font-size: 14px;
     }
 
-    @media print {
-      .site-header, .cta-row, .footer { display: none; }
-      body { background: #fff; }
-      .hero { min-height: auto; padding: 24px 0; }
-      h1 { font-size: 48px; }
-      h2 { font-size: 34px; }
-      section { padding: 18px 0; }
-      .feature-card, .mini-card, .skill, .role, .contact-hero, .contact-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+    @media (max-width: 1050px) {
+      .summary-grid, .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 760px) {
+      .nav { align-items: flex-start; padding: 12px 0; flex-direction: column; }
+      .nav-links { flex-wrap: wrap; }
+      .container { width: min(100% - 32px, var(--max)); }
+      .summary-grid, .skills-grid, .contact-grid, .job { grid-template-columns: 1fr; }
+      .hero { padding: 56px 0 34px; }
+      .section-title { font-size: 24px; }
     }
   </style>
-<script type="application/ld+json">
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Gennadii Kiryushatov",
     "jobTitle": "Senior iOS SDET",
-    "address": { "@type": "PostalAddress", "addressLocality": "Austin", "addressRegion": "TX", "addressCountry": "US" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Columbia", "addressRegion": "MD", "addressCountry": "US" },
     "email": "mailto:genakir@icloud.com",
-    "telephone": "+14692304471",
+    "sameAs": ["https://linkedin.com/in/genakir"],
     "knowsAbout": ["XCUITest", "Swift", "iOS Automation", "iPadOS", "tvOS", "CI/CD", "GitHub Actions", "GitLab CI", "Proxyman", "Charles Proxy", "Postman", "AWS Device Farm"]
   }
   </script>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-<div aria-label="Primary navigation" class="wrap nav">
-<a aria-label="Gennadii Kiryushatov home" class="brand" href="#top">
-<span class="glyph">GK</span>
-<span>Gennadii Kiryushatov</span>
-</a>
-<nav class="nav-links">
-<a href="#work">Work</a>
-<a href="#skills">Skills</a>
-<a href="#experience">Experience</a>
-<a href="#contact">Contact</a>
-</nav>
-<div class="nav-actions">
-<a download="" href="Gennadii_Kiryushatov_Sr_iOS_SDET_Resume.docx">Resume</a>
-<a href="mailto:genakir@icloud.com">Email</a>
-</div>
-</div>
-</header>
-<main id="main">
-<section class="hero" id="top">
-<div class="wrap hero-inner">
-<p class="eyebrow">Senior iOS SDET</p>
-<h1>Automation that makes releases feel lighter</h1>
-<p class="hero-copy">I build reliable XCUITest and Swift automation for <span>iOS, iPadOS, and tvOS</span> — with CI/CD, analytics validation, performance testing, and practical team workflows</p>
-<div aria-label="Primary actions" class="cta-row">
-<a class="pill primary" href="mailto:genakir@icloud.com?subject=Senior%20iOS%20SDET%20Opportunity">Contact me</a>
-<a class="pill secondary" download="" href="Gennadii_Kiryushatov_Sr_iOS_SDET_Resume.docx">Download resume</a>
-<a class="pill secondary" download="" href="Gennadii_Kiryushatov.vcf">Save contact</a>
-</div>
-</div>
-</section>
-<div aria-label="Career highlights" class="wrap intro-strip">
-<article class="mini-card"><strong>8+</strong><span>years building mobile test automation</span></article>
-<article class="mini-card"><strong>3</strong><span>Apple platforms: iOS, iPadOS, tvOS</span></article>
-<article class="mini-card"><strong>Swift</strong><span>XCUITest framework development</span></article>
-<article class="mini-card"><strong>CI/CD</strong><span>GitHub Actions, GitLab CI, Azure, Jenkins</span></article>
-</div>
-<section id="work">
-<div class="wrap">
-<div class="section-head">
-<p class="kicker">What I do</p>
-<h2>Designed for confidence before every release</h2>
-<p>Clean automation, useful signal, and fewer surprises in mobile delivery pipelines</p>
-</div>
-<div class="feature-grid">
-<article class="feature-card tall">
-<h3>Native mobile automation</h3>
-<p>XCUITest and Swift frameworks for iOS, iPadOS, and tvOS applications, including Page Object Model refactoring, Test Plans, smoke coverage, and snapshot testing</p>
-<div class="linkline"><a href="#experience">See experience →</a></div>
-<span aria-hidden="true" class="orb silver"></span>
-</article>
-<article class="feature-card tall dark">
-<h3>CI/CD that teams can trust</h3>
-<p>GitHub Actions, GitLab CI, Azure, Jenkins, AWS Device Farm, pull request checks, Slack/Jira traceability, and release-focused test reporting</p>
-<div class="linkline"><a href="#skills">View tools →</a></div>
-<span aria-hidden="true" class="orb dark-orb"></span>
-</article>
-<article class="feature-card">
-<h3>Analytics validation</h3>
-<p>Automated event validation with Proxyman CLI, plus API debugging with Charles Proxy, Proxyman, Postman, and Postman Monitors</p>
-<span aria-hidden="true" class="orb"></span>
-</article>
-<article class="feature-card">
-<h3>Quality workflows</h3>
-<p>Daily automation workflows, Safari-based macOS automation, VPN-based international testing, performance testing, and practical cross-team collaboration</p>
-<span aria-hidden="true" class="orb silver"></span>
-</article>
-</div>
-</div>
-</section>
-<section id="skills">
-<div class="wrap">
-<div class="section-head">
-<p class="kicker">Technical skills</p>
-<h2>The stack behind the signal</h2>
-<p>Focused toolset for Apple-platform automation, pipeline reliability, and troubleshooting</p>
-</div>
-<div class="skills">
-<article class="skill">
-<h3>Automation</h3>
-<div class="tags"><span class="tag">XCUITest</span><span class="tag">Swift</span><span class="tag">Page Object Model</span><span class="tag">Test Plans</span><span class="tag">Snapshot Testing</span></div>
-</article>
-<article class="skill">
-<h3>Platforms</h3>
-<div class="tags"><span class="tag">iOS</span><span class="tag">iPadOS</span><span class="tag">tvOS</span><span class="tag">macOS Safari</span><span class="tag">AWS Device Farm</span></div>
-</article>
-<article class="skill">
-<h3>CI/CD</h3>
-<div class="tags"><span class="tag">GitHub Actions</span><span class="tag">GitLab CI</span><span class="tag">Azure</span><span class="tag">Jenkins</span><span class="tag">AWS CLI</span></div>
-</article>
-<article class="skill">
-<h3>API &amp; analytics</h3>
-<div class="tags"><span class="tag">Proxyman CLI</span><span class="tag">Charles Proxy</span><span class="tag">Postman</span><span class="tag">Postman Monitors</span><span class="tag">Analytics validation</span></div>
-</article>
-<article class="skill">
-<h3>Workflow</h3>
-<div class="tags"><span class="tag">Jira</span><span class="tag">Asana</span><span class="tag">Git</span><span class="tag">Slack integrations</span><span class="tag">Traceability</span></div>
-</article>
-<article class="skill">
-<h3>AI-assisted</h3>
-<div class="tags"><span class="tag">Ollama</span><span class="tag">Copilot CLI</span><span class="tag">Cursor CLI</span><span class="tag">Claude Code</span><span class="tag">Self-healing analysis</span></div>
-</article>
-</div>
-</div>
-</section>
-<section id="experience">
-<div class="wrap">
-<div class="section-head">
-<p class="kicker">Experience</p>
-<h2>Recent roles, clear impact</h2>
-<p>From streaming and finance apps to camera capture and scene recognition, the focus stays the same: stable automation and faster feedback</p>
-</div>
-<div class="timeline">
-<article class="role">
-<div>
-<h3>Sr iOS SDET</h3>
-<div class="company">Quidient · Columbia, MD</div>
-<div class="period">Apr 2026 – Present</div>
-</div>
-<div>
-<p>Native mobile app for camera captures and scene recognition</p>
-<ul>
-<li>Building XCUITest and Swift automation framework coverage for iOS and iPadOS</li>
-<li>Creating performance test automation and analytics validation with Proxyman CLI</li>
-<li>Leading the test pipeline migration from GitHub Actions to GitLab CI</li>
-</ul>
-</div>
-</article>
-<article class="role">
-<div>
-<h3>iOS / iPadOS / tvOS SDET</h3>
-<div class="company">Paramount+ · Remote</div>
-<div class="period">May 2022 – Apr 2026</div>
-</div>
-<div>
-<p>Native streaming app automation for mobile and living-room platforms</p>
-<ul>
-<li>Automated UI, performance, snapshot, and Safari-based workflows with XCUITest and Swift</li>
-<li>Migrated CI/CD from Xcode Server to GitHub Actions and integrated smoke tests into pull request checks</li>
-<li>Integrated Jira, Slack, AWS Device Farm, analytics validation, VPN-based testing, and Figma-to-app snapshot comparison</li>
-</ul>
-</div>
-</article>
-<article class="role">
-<div>
-<h3>iOS SDET / Developer</h3>
-<div class="company">Fidelity Investments · Remote</div>
-<div class="period">Feb 2021 – May 2022</div>
-</div>
-<div>
-<p>Native mobile app for health benefits</p>
-<ul>
-<li>Refactored the existing iOS automation framework based on XCUITest and Swift</li>
-<li>Developed SwiftUI features and supported CI/CD automation with Microsoft Azure</li>
-<li>Investigated API issues with Charles Proxy and tracked defects in Jira</li>
-</ul>
-</div>
-</article>
-<article class="role">
-<div>
-<h3>Earlier iOS automation roles</h3>
-<div class="company">Malauzai · SiriusXM · Nielsen</div>
-<div class="period">Nov 2017 – Jan 2021</div>
-</div>
-<div>
-<p>Financial, streaming, and market research apps</p>
-<ul>
-<li>Developed and maintained iOS/iPadOS/tvOS automation frameworks using XCUITest and Swift</li>
-<li>Used Azure, Jenkins, Postman Monitors, Charles Proxy, SQL validation, Perfecto Mobile, Jira, and daily QA workflows</li>
-</ul>
-</div>
-</article>
-<article class="role">
-<div>
-<h3>Education</h3>
-<div class="company">Portnov Computer School · National Technical University</div>
-<div class="period">2016 · 2008</div>
-</div>
-<div>
-<p>QA Courses and MA in Computer Systems and Networks</p>
-<ul>
-<li>QA Courses, Portnov Computer School, 2016</li>
-<li>MA in Computer Systems and Networks, National Technical University, Kherson, Ukraine, 2008</li>
-</ul>
-</div>
-</article>
-</div>
-</div>
-</section>
-<section id="contact">
-<div class="wrap contact-panel">
-<article class="contact-hero">
-<p class="kicker">Business card</p>
-<h2>Let’s build reliable mobile automation</h2>
-<p>Senior iOS SDET · XCUITest · Swift · CI/CD · iOS / iPadOS / tvOS</p>
-<div class="cta-row" style="justify-content:flex-start">
-<a class="pill primary" href="mailto:genakir@icloud.com?subject=Senior%20iOS%20SDET%20Opportunity">Email Gennadii</a>
-<a class="pill secondary" href="tel:+14692304471">Call</a>
-</div>
-</article>
-<aside aria-label="Contact information" class="contact-card">
-<ul class="contact-list">
-<li><b>Location</b><span>Austin, TX Area</span></li>
-<li><b>Email</b><a href="mailto:genakir@icloud.com">genakir@icloud.com</a></li>
-<li><b>Phone</b><a href="tel:+14692304471">(469) 230-4471</a></li>
-<li><b>Focus</b><span>iOS, iPadOS, tvOS automation</span></li>
-</ul>
-</aside>
-</div>
-</section>
-</main>
-<footer class="footer">
-<div class="wrap footer-inner">
-<span>© 2026 Gennadii Kiryushatov References available upon request</span>
-<span class="footer-links">
-<a download="" href="Gennadii_Kiryushatov_Sr_iOS_SDET_Resume.docx">Download resume</a>
-<a download="" href="Gennadii_Kiryushatov.vcf">Save contact</a>
-<a href="#top">Back to top</a>
-</span>
-</div>
-</footer>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">Gennadii Kiryushatov</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container">
+        <p class="eyebrow">Senior iOS SDET</p>
+        <h1>I build reliable automation for iOS, iPadOS, and tvOS</h1>
+        <p class="lead">8+ years of experience with XCUITest, Swift, CI/CD, analytics validation, performance testing, and release quality across native mobile apps</p>
+        <div class="actions">
+          <a class="button primary" href="mailto:genakir@icloud.com?subject=Senior%20iOS%20SDET%20Opportunity">Email me</a>
+          <a class="button" href="https://linkedin.com/in/genakir" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a class="button" href="Gennadii_Kiryushatov_Sr_iOS_SDET_Resume.docx" download>Download resume</a>
+          <a class="button" href="Gennadii_Kiryushatov.vcf" download>Save contact</a>
+        </div>
+        <div class="meta">Columbia, MD · genakir@icloud.com · linkedin.com/in/genakir</div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <div class="summary-grid">
+          <div class="card summary-item">
+            <strong>8+ years</strong>
+            <span>Building and improving mobile test automation</span>
+          </div>
+          <div class="card summary-item">
+            <strong>Apple platforms</strong>
+            <span>Hands-on work across iOS, iPadOS, and tvOS</span>
+          </div>
+          <div class="card summary-item">
+            <strong>Automation focus</strong>
+            <span>XCUITest and Swift frameworks with stable, maintainable coverage</span>
+          </div>
+          <div class="card summary-item">
+            <strong>Delivery focus</strong>
+            <span>CI/CD pipelines, analytics validation, performance testing, and team workflows</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+          <div class="card">
+            <h3>Core tools</h3>
+            <div class="tags">
+              <span class="tag">XCUITest</span>
+              <span class="tag">Swift</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">GitLab CI</span>
+              <span class="tag">AWS Device Farm</span>
+              <span class="tag">Jenkins</span>
+              <span class="tag">Azure</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>API and analytics</h3>
+            <div class="tags">
+              <span class="tag">Proxyman CLI</span>
+              <span class="tag">Charles Proxy</span>
+              <span class="tag">Postman</span>
+              <span class="tag">Postman Monitors</span>
+              <span class="tag">Analytics validation</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Platforms</h3>
+            <div class="tags">
+              <span class="tag">iOS</span>
+              <span class="tag">iPadOS</span>
+              <span class="tag">tvOS</span>
+              <span class="tag">macOS Safari automation</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Workflow tools</h3>
+            <div class="tags">
+              <span class="tag">Jira</span>
+              <span class="tag">Asana</span>
+              <span class="tag">Git</span>
+              <span class="tag">Ollama</span>
+              <span class="tag">Copilot CLI</span>
+              <span class="tag">Cursor CLI</span>
+              <span class="tag">Claude Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <h2 class="section-title">Experience</h2>
+        <div class="experience-list">
+          <article class="card job">
+            <div>
+              <h3>Sr iOS SDET</h3>
+              <div class="company">Quidient</div>
+              <div class="location">Columbia, MD</div>
+              <div class="period">Apr 2026 – Present</div>
+            </div>
+            <p>Building XCUITest and Swift automation for iOS and iPadOS, adding performance coverage and analytics validation, and leading a pipeline migration from GitHub Actions to GitLab CI</p>
+          </article>
+
+          <article class="card job">
+            <div>
+              <h3>iOS / iPadOS / tvOS SDET</h3>
+              <div class="company">Paramount+</div>
+              <div class="location">Remote</div>
+              <div class="period">May 2022 – Apr 2026</div>
+            </div>
+            <p>Automated native streaming app workflows with XCUITest and Swift, integrated AWS Device Farm, analytics validation, snapshot testing, and CI/CD modernization with GitHub Actions</p>
+          </article>
+
+          <article class="card job">
+            <div>
+              <h3>iOS SDET / Developer</h3>
+              <div class="company">Fidelity Investments</div>
+              <div class="location">Remote</div>
+              <div class="period">Feb 2021 – May 2022</div>
+            </div>
+            <p>Refactored an existing iOS automation framework, developed SwiftUI features, supported Azure CI/CD, and debugged API issues with Charles Proxy</p>
+          </article>
+
+          <article class="card job">
+            <div>
+              <h3>Earlier roles</h3>
+              <div class="company">Malauzai Software · SiriusXM · The Nielsen Company</div>
+              <div class="period">2017 – 2021</div>
+            </div>
+            <p>Worked across iOS automation, API monitoring, Jenkins and Azure pipelines, SQL validation, and native mobile QA for finance, streaming, and research products</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-grid">
+          <div class="card">
+            <p style="margin:0 0 14px">If you are looking for someone who can improve mobile automation, strengthen CI/CD confidence, and build practical testing workflows, I would be happy to connect</p>
+            <div class="actions" style="margin-top:0">
+              <a class="button primary" href="mailto:genakir@icloud.com?subject=Senior%20iOS%20SDET%20Opportunity">Email me</a>
+              <a class="button" href="https://linkedin.com/in/genakir" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a class="button" href="Gennadii_Kiryushatov_Sr_iOS_SDET_Resume.docx" download>Resume</a>
+            </div>
+          </div>
+          <div class="card contact-list">
+            <div class="contact-row">
+              <b>Email</b>
+              <a href="mailto:genakir@icloud.com">genakir@icloud.com</a>
+            </div>
+            <div class="contact-row">
+              <b>LinkedIn</b>
+              <a href="https://linkedin.com/in/genakir" target="_blank" rel="noopener noreferrer">linkedin.com/in/genakir</a>
+            </div>
+            <div class="contact-row">
+              <b>Location</b>
+              <span>Columbia, MD</span>
+            </div>
+            <div class="contact-row">
+              <b>Role</b>
+              <span>Senior iOS SDET</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">Simple static resume site built for GitHub Pages</div>
+  </footer>
 </body>
 </html>
