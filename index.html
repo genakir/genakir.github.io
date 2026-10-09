@@ -147,6 +147,8 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
+    .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
     .summary-item strong {
       display: block;
       font-size: 24px;
@@ -210,6 +212,14 @@
       color: #2d2d2d;
     }
 
+    section[id] { scroll-margin-top: 90px; }
+    .job ul { margin: 12px 0 0; padding-left: 20px; }
+    .job li + li, .earlier-roles li + li { margin-top: 8px; }
+    .job .job-context { color: var(--muted); }
+    .earlier-roles { padding-left: 20px; }
+    #education p { margin: 0; }
+    #education p + p { margin-top: 12px; }
+
     .contact-grid {
       display: grid;
       gap: 12px;
@@ -253,7 +263,7 @@
     "@type": "Person",
     "name": "Gennadii Kiryushatov",
     "jobTitle": "Senior iOS SDET",
-    "address": { "@type": "PostalAddress", "addressLocality": "Columbia", "addressRegion": "MD", "addressCountry": "US" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Washington, DC area", "addressCountry": "US" },
     "email": "mailto:genakir@icloud.com",
     "sameAs": ["https://linkedin.com/in/genakir"],
     "knowsAbout": ["XCUITest", "Swift", "iOS Automation", "iPadOS", "tvOS", "CI/CD", "GitHub Actions", "GitLab CI", "Proxyman", "Charles Proxy", "Postman", "AWS Device Farm"]
@@ -268,6 +278,7 @@
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -278,14 +289,14 @@
       <div class="container">
         <p class="eyebrow">Senior iOS SDET</p>
         <h1>I build reliable automation for iOS, iPadOS, and tvOS</h1>
-        <p class="lead">8+ years of experience with XCUITest, Swift, CI/CD, analytics validation, performance testing, and release quality across native mobile apps</p>
+        <p class="lead">Senior iOS SDET with 8+ years of experience building XCUITest and Swift automation, integrating CI/CD, and validating analytics and performance across native mobile apps.</p>
         <div class="actions">
           <a class="button primary" href="mailto:genakir@icloud.com?subject=Senior%20iOS%20SDET%20Opportunity">Email me</a>
           <a class="button" href="https://linkedin.com/in/genakir" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a class="button" href="Gennadii_Kiryushatov_Sr_iOS_SDET_Resume.docx" download>Download resume</a>
           <a class="button" href="Gennadii_Kiryushatov.vcf" download>Save contact</a>
         </div>
-        <div class="meta">Columbia, MD · genakir@icloud.com · linkedin.com/in/genakir</div>
+        <div class="meta">Washington, DC area · genakir@icloud.com · linkedin.com/in/genakir</div>
       </div>
     </section>
 
@@ -318,47 +329,24 @@
         <h2 class="section-title">Skills</h2>
         <div class="skills-grid">
           <div class="card">
-            <h3>Core tools</h3>
-            <div class="tags">
-              <span class="tag">XCUITest</span>
-              <span class="tag">Swift</span>
-              <span class="tag">GitHub Actions</span>
-              <span class="tag">GitLab CI</span>
-              <span class="tag">AWS Device Farm</span>
-              <span class="tag">Jenkins</span>
-              <span class="tag">Azure</span>
-            </div>
+            <h3>Automation and development</h3>
+            <div class="tags"><span class="tag">XCUITest</span><span class="tag">Swift</span><span class="tag">SwiftUI</span><span class="tag">Page Object Model</span><span class="tag">Xcode Test Plans</span><span class="tag">snapshot testing</span></div>
           </div>
           <div class="card">
-            <h3>API and analytics</h3>
-            <div class="tags">
-              <span class="tag">Proxyman CLI</span>
-              <span class="tag">Charles Proxy</span>
-              <span class="tag">Postman</span>
-              <span class="tag">Postman Monitors</span>
-              <span class="tag">Analytics validation</span>
-            </div>
+            <h3>CI/CD and device testing</h3>
+            <div class="tags"><span class="tag">GitHub Actions</span><span class="tag">GitLab CI</span><span class="tag">Jenkins</span><span class="tag">Microsoft Azure</span><span class="tag">AWS Device Farm</span><span class="tag">AWS CLI</span></div>
           </div>
           <div class="card">
-            <h3>Platforms</h3>
-            <div class="tags">
-              <span class="tag">iOS</span>
-              <span class="tag">iPadOS</span>
-              <span class="tag">tvOS</span>
-              <span class="tag">macOS Safari automation</span>
-            </div>
+            <h3>API and data validation</h3>
+            <div class="tags"><span class="tag">Proxyman CLI</span><span class="tag">Charles Proxy</span><span class="tag">Postman</span><span class="tag">Postman Monitors</span><span class="tag">SQL</span></div>
           </div>
           <div class="card">
-            <h3>Workflow tools</h3>
-            <div class="tags">
-              <span class="tag">Jira</span>
-              <span class="tag">Asana</span>
-              <span class="tag">Git</span>
-              <span class="tag">Ollama</span>
-              <span class="tag">Copilot CLI</span>
-              <span class="tag">Cursor CLI</span>
-              <span class="tag">Claude Code</span>
-            </div>
+            <h3>Platforms and workflow</h3>
+            <div class="tags"><span class="tag">iOS</span><span class="tag">iPadOS</span><span class="tag">tvOS</span><span class="tag">macOS Safari automation</span><span class="tag">Git</span><span class="tag">Jira</span><span class="tag">Asana</span></div>
+          </div>
+          <div class="card">
+            <h3>AI tools</h3>
+            <div class="tags"><span class="tag">Ollama</span><span class="tag">Copilot CLI</span><span class="tag">Cursor CLI</span><span class="tag">Claude Code</span></div>
           </div>
         </div>
       </div>
@@ -370,14 +358,21 @@
         <div class="experience-list">
           <article class="card job">
             <div>
-              <h3>Sr iOS SDET</h3>
+              <h3>Senior iOS SDET</h3>
               <div class="company">Quidient</div>
               <div class="location">Columbia, MD</div>
               <div class="period">Apr 2026 – Present</div>
             </div>
-            <p>Building XCUITest and Swift automation for iOS and iPadOS, adding performance coverage and analytics validation, and leading a pipeline migration from GitHub Actions to GitLab CI</p>
+            <div>
+              <p class="job-context">Camera capture and scene recognition app</p>
+              <ul>
+                <li>Building an XCUITest and Swift framework for iOS and iPadOS UI automation and performance testing.</li>
+                <li>Implemented analytics validation with Proxyman CLI.</li>
+                <li>Leading the test pipeline migration from GitHub Actions to GitLab CI.</li>
+                <li>Using agentic AI for self-healing test automation, test generation, and debugging.</li>
+              </ul>
+            </div>
           </article>
-
           <article class="card job">
             <div>
               <h3>iOS / iPadOS / tvOS SDET</h3>
@@ -385,9 +380,19 @@
               <div class="location">Remote</div>
               <div class="period">May 2022 – Apr 2026</div>
             </div>
-            <p>Automated native streaming app workflows with XCUITest and Swift, integrated AWS Device Farm, analytics validation, snapshot testing, and CI/CD modernization with GitHub Actions</p>
+            <div>
+              <p class="job-context">Native streaming apps</p>
+              <ul>
+                <li>Automated iOS, iPadOS, and tvOS workflows with XCUITest and Swift; refactored the Page Object Model and reduced UI test runtime, especially on tvOS.</li>
+                <li>Migrated CI/CD from Xcode Server to GitHub Actions and added smoke tests to pull request checks.</li>
+                <li>Integrated tests and performance coverage with AWS Device Farm using AWS CLI.</li>
+                <li>Automated analytics validation with Proxyman CLI and snapshot comparisons between Figma designs and app screenshots.</li>
+                <li>Automated a daily cross-team workflow with XCUITest and macOS Safari; linked UI test results to Jira and Slack for traceability.</li>
+                <li>Configured VPN-based international testing for location-dependent behavior.</li>
+                <li>Used agentic AI for self-healing test automation, test generation, and debugging; applied Copilot CLI to automation analysis.</li>
+              </ul>
+            </div>
           </article>
-
           <article class="card job">
             <div>
               <h3>iOS SDET / Developer</h3>
@@ -395,17 +400,80 @@
               <div class="location">Remote</div>
               <div class="period">Feb 2021 – May 2022</div>
             </div>
-            <p>Refactored an existing iOS automation framework, developed SwiftUI features, supported Azure CI/CD, and debugged API issues with Charles Proxy</p>
+            <div>
+              <p class="job-context">Native health benefits app</p>
+              <ul>
+                <li>Refactored the XCUITest and Swift automation framework and developed app features in SwiftUI.</li>
+                <li>Supported CI/CD automation in Microsoft Azure and investigated API issues with Charles Proxy.</li>
+              </ul>
+            </div>
           </article>
-
           <article class="card job">
             <div>
-              <h3>Earlier roles</h3>
-              <div class="company">Malauzai Software · SiriusXM · The Nielsen Company</div>
-              <div class="period">2017 – 2021</div>
+              <h3>iOS SDET / Developer</h3>
+              <div class="company">Malauzai Software</div>
+              <div class="location">Austin, TX</div>
+              <div class="period">Nov 2019 – Jan 2021</div>
             </div>
-            <p>Worked across iOS automation, API monitoring, Jenkins and Azure pipelines, SQL validation, and native mobile QA for finance, streaming, and research products</p>
+            <div>
+              <p class="job-context">Mobile banking apps for financial institutions and credit unions</p>
+              <ul>
+                <li>Developed an XCUITest and Swift automation framework for iOS and iPadOS and implemented Xcode Test Plans.</li>
+                <li>Delivered app bug fixes and enhancements; configured API monitoring with Postman Monitors.</li>
+                <li>Supported Microsoft Azure CI/CD and debugged API issues with Charles Proxy.</li>
+              </ul>
+            </div>
           </article>
+          <article class="card job">
+            <div>
+              <h3>iOS Automation Engineer</h3>
+              <div class="company">SiriusXM</div>
+              <div class="location">Irving, TX</div>
+              <div class="period">Nov 2018 – Nov 2019</div>
+            </div>
+            <div>
+              <p class="job-context">Live and on-demand audio streaming app</p>
+              <ul>
+                <li>Maintained XCUITest and Swift automation frameworks for iOS and tvOS with Jenkins CI/CD.</li>
+                <li>Configured Postman Monitors for API monitoring and investigated API issues with Charles Proxy.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card job">
+            <div>
+              <h3>QA Engineer</h3>
+              <div class="company">The Nielsen Company</div>
+              <div class="location">Richardson, TX</div>
+              <div class="period">Nov 2017 – Nov 2018</div>
+            </div>
+            <div>
+              <p class="job-context">iOS market research and data collection app</p>
+              <ul>
+                <li>Tested across iOS 8–12 and automated coverage with Perfecto Mobile and XCUITest.</li>
+                <li>Created and executed test scenarios, validated database records with SQL, and tracked defects in Jira.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="card">
+            <h3>Earlier experience</h3>
+            <ul class="earlier-roles">
+            <li>Technical Support Engineer | Microsoft | Irving, TX | Jun 2017 – Nov 2017</li>
+            <li>System Administrator | Selerix Systems Inc | McKinney, TX | Sep 2014 – Jun 2017</li>
+            <li>System Administrator | Nicolas | Kherson, Ukraine | 2011 – 2013</li>
+            <li>System Administrator | Meshkov | Kherson, Ukraine | 2010 – 2011</li>
+            <li>ATM Maintenance Engineer | PrivatBank | Kherson, Ukraine | 2008 – 2010</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <h2 class="section-title">Education</h2>
+        <div class="card">
+          <p><strong>QA Courses</strong> · Portnov Computer School · 2016</p>
+          <p><strong>MA in Computer Systems and Networks</strong> · National Technical University · Kherson, Ukraine · 2008</p>
         </div>
       </div>
     </section>
@@ -433,7 +501,7 @@
             </div>
             <div class="contact-row">
               <b>Location</b>
-              <span>Columbia, MD</span>
+              <span>Washington, DC area</span>
             </div>
             <div class="contact-row">
               <b>Role</b>
